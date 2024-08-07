@@ -37,6 +37,20 @@ post_response = requests.post("http://127.0.0.1:8000/v1/advertisement/",
 print(post_response.status_code)
 print(post_response.json())
 
+post_response = requests.post("http://127.0.0.1:8000/v1/advertisement/",
+                              json={"title": "Test_title",
+                                    "description": "Test description",
+                                    "price": 1000.0},
+                              headers={"x-token": token})
+print(post_response.status_code)
+print(post_response.json())
+post_response = requests.post("http://127.0.0.1:8000/v1/advertisement/",
+                              json={"title": "Test_title",
+                                    "description": "Test description",
+                                    "price": 1000.0},
+                              headers={"x-token": token})
+print(post_response.status_code)
+print(post_response.json())
 # Просмотр объявления неавторизованным пользователем
 
 response = requests.get(f"http://127.0.0.1:8000/v1/advertisement/{post_response.json().get("id")}/")
@@ -63,26 +77,26 @@ response = requests.get(f"http://127.0.0.1:8000/v1/advertisement/?title=Test_tit
 print(response.status_code)
 print(response.json())
 
-# Удаление объявления
-response = requests.delete(f"http://127.0.0.1:8000/v1/advertisement/{post_response.json().get("id")}/",
-                           headers={"x-token": token})
-
-print(response.json())
-print(response.status_code)
-
-# проверка
-response = requests.get(f"http://127.0.0.1:8000/v1/advertisement/{post_response.json().get("id")}/")
-
-print(response.status_code)
-print(response.json())
-
-# Удаление пользователя
-response = requests.delete(f"http://127.0.0.1:8000/v1/user/{USER_ID}/", headers={"x-token": token})
-print(response.status_code)
-print(response.json())
-
-# Проверка
-response = requests.get(f"http://127.0.0.1:8000/v1/user/{USER_ID}/")
-
-print(response.status_code)
-print(response.json())
+# # Удаление объявления
+# response = requests.delete(f"http://127.0.0.1:8000/v1/advertisement/{post_response.json().get("id")}/",
+#                            headers={"x-token": token})
+#
+# print(response.json())
+# print(response.status_code)
+#
+# # проверка
+# response = requests.get(f"http://127.0.0.1:8000/v1/advertisement/{post_response.json().get("id")}/")
+#
+# print(response.status_code)
+# print(response.json())
+#
+# # Удаление пользователя
+# response = requests.delete(f"http://127.0.0.1:8000/v1/user/{USER_ID}/", headers={"x-token": token})
+# print(response.status_code)
+# print(response.json())
+#
+# # Проверка
+# response = requests.get(f"http://127.0.0.1:8000/v1/user/{USER_ID}/")
+#
+# print(response.status_code)
+# print(response.json())

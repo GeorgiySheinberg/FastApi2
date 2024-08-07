@@ -26,10 +26,9 @@ async def get_item(session: Session, orm_class: typing.Type[Advertisement], ad_i
 
 
 async def search_item(session: Session, title: str = None) -> list[Advertisement]:
-    query = select(Advertisement).where(Advertisement.title == title)
-    orm_object: Result = await session.execute(query)
-
-    ads = orm_object.all()
+    query = select(Advertisement).join(User.advertisements).where(Advertisement.title == title)
+    orm_object = await session.execute(query)
+    ads = orm_object.first()
     if ads is None:
         raise HTTPException(status_code=404, detail=f"{Advertisement.__name__} is not found")
     ads = [ad.dict for ad in ads]
